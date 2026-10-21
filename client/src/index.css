@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design system carried over from the WealthFund panel: ink navy + signal green, Sora headings, Inter body */
+html, body, #root { height: 100%; }
+body { margin: 0; background: #f6f7fb; color: #10182b; font-family: 'Inter', -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4 { font-family: 'Sora', 'Inter', sans-serif; margin: 0; letter-spacing: -0.01em; color: #0b1120; }
+.mono-num { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1; }
+button { font-family: inherit; }
+::selection { background: #e3f9f1; color: #0a9268; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: #c7cee3; border-radius: 8px; }
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, a:focus-visible { outline: 2px solid #12b886; outline-offset: 2px; }
+
+@layer components {
+  .card { @apply rounded-lg border border-border-subtle bg-surface-1 shadow-sm; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-bold transition disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-dark { @apply btn bg-ink-950 text-white shadow-dark hover:bg-ink-900; }
+  .btn-green { @apply btn bg-signal-green text-white shadow-glow hover:bg-signal-greenDark; }
+  .btn-ghost { @apply btn border border-border-strong bg-white text-ink-800 hover:bg-surface-2; }
+  .btn-red { @apply btn bg-coral text-white hover:opacity-90; }
+  .input { @apply w-full rounded-md border border-border-subtle bg-surface-0 px-3.5 py-2.5 text-sm text-ink-900 outline-none placeholder:text-ink-300 focus:border-signal-green; }
+  .label { @apply mb-1.5 block text-xs font-bold uppercase tracking-wide text-ink-300; }
+  .th { @apply whitespace-nowrap border border-[#c9cee0] bg-[#eef0f6] px-4 py-3 text-left text-[11.5px] font-bold uppercase tracking-wide text-ink-300; }
+  .td { @apply border border-[#d7dbe7] px-4 py-3 text-[13.5px] text-ink-800; }
+}
+
+@keyframes ring { 0% { transform: scale(1); opacity: .6 } 100% { transform: scale(2.2); opacity: 0 } }
+.ring-pulse::before, .ring-pulse::after { content: ''; position: absolute; inset: 0; border-radius: 9999px; border: 2px solid #12b886; animation: ring 1.8s ease-out infinite; }
+.ring-pulse::after { animation-delay: .9s; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
